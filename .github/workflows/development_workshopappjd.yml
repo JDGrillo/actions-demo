@@ -7,7 +7,7 @@ name: Build and deploy Python app to Azure Web App - workshopappjd
 on:
   push:
     branches:
-      - development
+      - main
   workflow_dispatch:
 
 jobs:
