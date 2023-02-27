@@ -31,6 +31,8 @@ jobs:
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      - name: Super-Linter
+        uses: github/super-linter@v4.10.1
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
