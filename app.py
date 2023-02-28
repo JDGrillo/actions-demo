@@ -32,6 +32,7 @@ def favicon():
 def hello():
     name = request.form.get("name")
     title = request.form.get("title")
+    newName = ""
     joke = create_joke(name, title)
 
     if name:
