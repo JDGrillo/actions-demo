@@ -70,7 +70,9 @@ disable=raw-checker-failed,
 enable=c-extension-no-member,
        unused-variable,
        invalid-name,
-       missing-function-docstring
+       missing-function-docstring,
+       C,
+       W
 
 
 [REPORTS]
