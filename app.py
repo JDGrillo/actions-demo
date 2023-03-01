@@ -1,4 +1,5 @@
-from datetime import datetime
+import os
+from dotenv import load_dotenv
 from flask import (
     Flask,
     render_template,
@@ -7,17 +8,16 @@ from flask import (
     url_for,
     send_from_directory,
 )
-import os
 from helpers.create_joke import create_joke
 
 app = Flask(__name__)
 
+load_dotenv()
+NEW_FEATURES = os.getenv('NEW_FEATURES')
 
 @app.route("/")
 def index():
-    print("Request for index page received")
-    print(os.environ["newFeatures"])
-    if os.environ["newFeatures"] == True:
+    if NEW_FEATURES == "on":
         return render_template("index_joke_feature.html")
     else:
         return render_template("index.html")
@@ -36,11 +36,10 @@ def favicon():
 def hello():
     name = request.form.get("name")
     newName = ""
-    if os.environ["newFeatures"] == True:
+    if NEW_FEATURES == "on":
         title = request.form.get("title")
         joke = create_joke(name, title)
         if name:
-            print("Request for hello page received with name=%s" % name)
             return render_template("hello_joke_feature.html", joke=joke)
         else:
             print(
@@ -49,7 +48,6 @@ def hello():
             return redirect(url_for("index"))
     else:
         if name:
-            print("Request for hello page received with name=%s" % name)
             return render_template("hello.html", name=name)
         else:
             print(
