@@ -13,7 +13,8 @@ from helpers.create_joke import create_joke
 app = Flask(__name__)
 
 load_dotenv()
-NEW_FEATURES = os.getenv('NEW_FEATURES')
+NEW_FEATURES = os.getenv("NEW_FEATURES")
+
 
 @app.route("/")
 def index():
