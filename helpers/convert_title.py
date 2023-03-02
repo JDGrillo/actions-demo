@@ -1,8 +1,9 @@
 def convert_title(title):
     if "Software" in title:
         return "Software"
-    if "CEO" in title:
+    elif "CEO" in title:
         return "CEO"
-    if "Accountant" in title:
+    elif "Accountant" in title:
         return "Accountant"
-    return "Generic"
+    else:
+        return "Generic"
