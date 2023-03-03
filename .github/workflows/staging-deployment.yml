@@ -40,6 +40,9 @@ jobs:
           VALIDATE_PYTHON_BLACK: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Run pytest
+        run: python -m pytest
+
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
         with:
