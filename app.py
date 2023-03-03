@@ -1,5 +1,4 @@
 import os
-from dotenv import load_dotenv
 from flask import (
     Flask,
     render_template,
@@ -12,8 +11,7 @@ from helpers.create_joke import create_joke
 
 app = Flask(__name__)
 
-load_dotenv()
-NEW_FEATURES = os.getenv("NEW_FEATURES")
+NEW_FEATURES = os.environ["NEW_FEATURES"]
 
 
 @app.route("/")
