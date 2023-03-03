@@ -1,4 +1,4 @@
-dotenv
+python-dotenv
 Flask==2.0.2
 pylint
 pytest
