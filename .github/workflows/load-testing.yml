@@ -1,0 +1,22 @@
+name: Azure Load Test Development Envrionment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        continue-on-error: false
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: 'Azure Load Testing'
+        uses: azure/load-testing@v1
+        with:
+          loadTestConfigFile: 'SampleApp.yaml'
+          loadTestResource: 'loadTestResourceName'
+          resourceGroup: 'loadTestResourceGroup'
