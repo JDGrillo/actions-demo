@@ -21,11 +21,11 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/favicon.ico")
+@app.route("/images/clippy.png")
 def favicon():
     return send_from_directory(
         os.path.join(app.root_path, "static"),
-        "favicon.ico",
+        "images/clippy.png",
         mimetype="image/vnd.microsoft.icon",
     )
 
