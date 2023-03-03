@@ -37,9 +37,9 @@ jobs:
       - name: Super-Linter
         uses: github/super-linter@v4.10.1
         env:
+          VALIDATE_PYTHON_BLACK: true
           VALIDATE_PYTHON_PYLINT: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # VALIDATE_PYTHON_BLACK: true
 
       - name: Run pytest
         run: python -m pytest
