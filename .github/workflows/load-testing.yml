@@ -35,3 +35,9 @@ jobs:
           loadTestConfigFile: './load_testing/config.yaml'
           loadTestResource: ${{ env.LOAD_TEST_RESOURCE }}
           resourceGroup: ${{ env.LOAD_TEST_RESOURCE_GROUP }}
+
+      - name: 'Upload results'
+        uses: actions/upload-artifact@v2
+        with:
+          name: loadTestResults
+          path: ${{ github.workspace }}/test
