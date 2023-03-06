@@ -97,6 +97,23 @@
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites', parameters('webAppName'))]"
       ]
+    },
+    {
+      "apiVersion": "2020-06-01",
+      "type": "Microsoft.Web/sites/slots",
+      "name": "[concat(parameters('webAppName'), '/', 'staging')]",
+      "kind": "app",
+      "location": "[parameters('location')]",
+      "comments": "This specifies the web app slots.",
+      "tags": {
+        "displayName": "WebAppSlots"
+      },
+      "properties": {
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/Sites', parameters('webAppName'))]"
+      ]
     }
   ]
 }
