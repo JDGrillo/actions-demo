@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 env:
+  APP_NAME: "workshopappjd"
   LOAD_TEST_RESOURCE: "workshop-loadtest"
   LOAD_TEST_RESOURCE_GROUP: "workshop"
   LOCATION: "eastus"
@@ -39,7 +40,7 @@ jobs:
             [
               {
               "name": "webapp",
-              "value": "workshopappjd-staging.azurewebsites.net"
+              "value": "${{ env.APP_NAME }}-staging.azurewebsites.net"
               }
             ]
 

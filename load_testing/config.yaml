@@ -1,17 +1,15 @@
-displayName: Get_workshopappjd.azurewebsites.net
+displayName: GetWorkshopAppStaging
 testPlan: quick_test.jmx
 description: 
 engineInstances: 1
 testId: c848264e-8dcd-4916-85db-cde1add87e82
 splitAllCSVs: False
 env:
-- name: domain
-  value: workshopappjd.azurewebsites.net
 - name: protocol
   value: https
 - name: threads_per_engine
-  value: 2
+  value: 5
 - name: ramp_up_time
   value: 0
 - name: duration_in_sec
-  value: 120
+  value: 60
