@@ -35,6 +35,13 @@ jobs:
           loadTestConfigFile: './load_testing/config.yaml'
           loadTestResource: ${{ env.LOAD_TEST_RESOURCE }}
           resourceGroup: ${{ env.LOAD_TEST_RESOURCE_GROUP }}
+          env: |
+            [
+              {
+              "name": "webapp",
+              "value": "workshopappjd-staging.azurewebsites.net"
+              }
+            ]
 
       - name: 'Upload results'
         uses: actions/upload-artifact@v2

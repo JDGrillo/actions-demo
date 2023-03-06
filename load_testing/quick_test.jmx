@@ -31,7 +31,7 @@
           </elementProp>
           <elementProp name="domain" elementType="Argument">
             <stringProp name="Argument.name">domain</stringProp>
-            <stringProp name="Argument.value">${__BeanShell( System.getenv("domain") )}</stringProp>
+            <stringProp name="Argument.value">${__BeanShell( System.getenv("webapp") )}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="protocol" elementType="Argument">
