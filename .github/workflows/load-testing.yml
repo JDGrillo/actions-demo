@@ -3,6 +3,11 @@ name: Azure Load Test Development Envrionment
 on:
   workflow_dispatch:
 
+env:
+  LOAD_TEST_RESOURCE: "workshop-loadtest"
+  LOAD_TEST_RESOURCE_GROUP: "workshop"
+  LOCATION: "West US"
+
 jobs:
   test:
     steps:
@@ -14,9 +19,16 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Create Azure Load Testing resource
+        uses: azure/arm-deploy@v1
+        with:
+          resourceGroupName: ${{ env.LOAD_TEST_RESOURCE_GROUP }}
+          template: ./ARMTemplate/template.json
+          parameters: ./ARMTemplate/parameters.json name=${{ env.LOAD_TEST_RESOURCE }} location="${{ env.LOCATION }}"
+
       - name: 'Azure Load Testing'
         uses: azure/load-testing@v1
         with:
-          loadTestConfigFile: 'SampleApp.yaml'
-          loadTestResource: 'loadTestResourceName'
-          resourceGroup: 'loadTestResourceGroup'
+          loadTestConfigFile: 'load_testing/config.yaml'
+          loadTestResource: ${{ env.LOAD_TEST_RESOURCE }}
+          resourceGroup: ${{ env.LOAD_TEST_RESOURCE_GROUP }}
