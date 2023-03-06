@@ -1,6 +1,8 @@
 name: Azure Load Test Development Envrionment
 
 on:
+  push:
+    branches: [ "feature/automated-tests" ]
   workflow_dispatch:
 
 env:
