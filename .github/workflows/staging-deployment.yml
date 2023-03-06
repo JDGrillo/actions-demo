@@ -1,18 +1,15 @@
 name: Build and deploy Python app to Azure Web App Staging Slot
 
-env:
-  AZURE_WEBAPP_NAME: workshopappjdtestt  # set this to the name of your Azure Web App
-  PYTHON_VERSION: '3.7'              # set this to the Python version to use
-
 on:
   push:
-    branches: [ "development" ]
+    branches: [ "development", "feature/github-actions" ]
   workflow_dispatch:
 
 env:
   APP_NAME: "workshopappjd" # update this for your app name
   RESOURCE_GROUP: "workshop" # update this or set this to the same RG as the app
   LOCATION: "eastus"
+  PYTHON_VERSION: '3.7'              # set this to the Python version to use
 
 permissions:
   contents: read
@@ -99,6 +96,6 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.WEBAPP_NAME }}  
+          app-name: ${{ env.APP_NAME }}  
           publish-profile: ${{ secrets.AZURE_WEB_APP_PUBLISH_PROFILE_STAGING }}
           slot-name: 'staging'
