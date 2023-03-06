@@ -40,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: loadTestResults
-          path: ${{ github.workspace }}/test
+          path: ${{ github.workspace }}/loadTest
