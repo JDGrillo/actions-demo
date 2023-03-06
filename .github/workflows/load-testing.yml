@@ -8,7 +8,7 @@ on:
 env:
   LOAD_TEST_RESOURCE: "workshop-loadtest"
   LOAD_TEST_RESOURCE_GROUP: "workshop"
-  LOCATION: "West US"
+  LOCATION: "eastus"
 
 jobs:
   test:
