@@ -109,7 +109,15 @@
         "displayName": "WebAppSlots"
       },
       "properties": {
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]"
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]",
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "NEW_FEATURES",
+              "value": "on"
+            }
+          ]
+    }
       },
       "dependsOn": [
         "[resourceId('Microsoft.Web/Sites', parameters('webAppName'))]"
