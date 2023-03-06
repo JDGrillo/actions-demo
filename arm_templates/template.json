@@ -7,9 +7,6 @@
         },
         "location": {
             "type": "String"
-        },
-        "tags": {
-            "type": "Object"
         }
     },
     "resources": [
