@@ -1,7 +1,7 @@
 name: Continuous Integration of Branch
 
 env:
-  PYTHON_VERSION: '3.7'              # set this to the Python version to use
+  PYTHON_VERSION: '3.7' # set this to the Python version to use
 
 on:
   push:
@@ -30,7 +30,9 @@ jobs:
           source venv/bin/activate
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: | 
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Super-Linter
