@@ -21,7 +21,8 @@ jobs:
         uses: azure/login@v1
         continue-on-error: false
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }} # set this through a service principal and save as a GitHub secret 
+          creds: ${{ secrets.AZURE_CREDENTIALS }} # set this through a service principal and save as a GitHub secret
+          # https://github.com/marketplace/actions/azure-load-testing#azure-service-principal-for-rbac - don't run in Git Bash 
 
       - name: Create Azure Load Testing resource
         uses: azure/arm-deploy@v1
