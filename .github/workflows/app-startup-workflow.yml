@@ -1,12 +1,12 @@
-name: Build and deploy Python app to Azure Web App Staging Slot
+name: Build and deploy Python app to Azure Web App
 
 on:
   push:
-    branches: [ "development" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 env:
-  APP_NAME: "workshopappjdtest1" # update this for your app name
+  APP_NAME: "workshopappjd" # update this for your app name
   RESOURCE_GROUP: "workshop" # update this or set this to the same RG as the app
   LOCATION: "eastus"
   PYTHON_VERSION: '3.7'              # set this to the Python version to use
@@ -35,17 +35,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      - name: Super-Linter
-        uses: github/super-linter@v4.10.1
-        env:
-          VALIDATE_PYTHON_BLACK: true
-          VALIDATE_PYTHON_PYLINT: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run pytest
-        run: python -m pytest
-
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
         with:
@@ -68,22 +57,12 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }} # set this through a service principal and save as a GitHub secret
           # https://github.com/marketplace/actions/azure-load-testing#azure-service-principal-for-rbac - don't run in Git Bash 
 
-      - name: Create Azure WebApp Resource
-        uses: azure/arm-deploy@v1
-        with:
-          resourceGroupName: ${{ env.RESOURCE_GROUP }}
-          template: ./arm_templates/app_service_arm.json
-          parameters: webAppName=${{ env.APP_NAME }} location="${{ env.LOCATION }}"
 
   deploy:
     permissions:
       contents: none
     runs-on: ubuntu-latest
-
-    needs: createResources
-    environment:
-      name: 'Development'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    environment: Production
 
     steps:
       - name: Download artifact from build job
@@ -97,5 +76,4 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.APP_NAME }}  
-          publish-profile: ${{ secrets.AZURE_WEB_APP_PUBLISH_PROFILE_STAGING }}
-          slot-name: 'staging'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
