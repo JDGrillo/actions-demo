@@ -74,7 +74,13 @@
         "siteConfig": {
           "linuxFxVersion": "[parameters('linuxFxVersion')]",
           "minTlsVersion": "1.2",
-          "ftpsState": "FtpsOnly"
+          "ftpsState": "FtpsOnly",
+          "appSettings": [
+            {
+              "name": "NEW_FEATURES",
+              "value": "off"
+            }
+          ]
         }
       },
       "identity": {
