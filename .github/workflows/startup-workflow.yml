@@ -39,4 +39,5 @@ jobs:
     environment: Development
 
     steps:
-      -name: Update PUBLISH_PROFILEs
+      - name: Update PUBLISH_PROFILEs
+        run: echo "Ensure GH Secrets are set"
