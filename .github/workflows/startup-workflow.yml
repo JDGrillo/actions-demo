@@ -1,10 +1,11 @@
 name: Create App Service with Staging Deployment Slot
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "startup-branch" ]
 
 env:
-  APP_NAME: "workshopappjdtest1" # update this for your app name
+  APP_NAME: "workshopappjdtest2" # update this for your app name
   RESOURCE_GROUP: "workshop"     # update this or set this to the same RG as the app
   LOCATION: "eastus"
   PYTHON_VERSION: '3.7'
