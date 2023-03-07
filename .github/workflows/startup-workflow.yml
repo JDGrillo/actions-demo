@@ -33,3 +33,11 @@ jobs:
           resourceGroupName: ${{ env.RESOURCE_GROUP }}
           template: ./arm_templates/app_service_arm.json
           parameters: webAppName=${{ env.APP_NAME }} location="${{ env.LOCATION }}"
+
+jobs:
+  validateEnvs:
+    runs-on: ubuntu-latest
+    environment: Development
+
+    steps:
+      -name: Update PUBLISH_PROFILEs
