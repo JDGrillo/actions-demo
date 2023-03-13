@@ -8,10 +8,10 @@ on:
   workflow_dispatch:
 
 env:
-  APP_NAME: "workshopappjdtest2" # update this for your app name
-  RESOURCE_GROUP: "workshop" # update this or set this to the same RG as the app
-  LOCATION: "eastus"
-  PYTHON_VERSION: '3.7'              # set this to the Python version to use
+  APP_NAME: "workshopappjdtest" # update this for your app name
+  RESOURCE_GROUP: "workshop"    # update this or set this to the same RG as the app
+  LOCATION: "eastus"            # set to the same region as RG
+  PYTHON_VERSION: '3.7'         # set this to the Python version to use
 
 permissions:
   contents: read
@@ -22,8 +22,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        ref: "main"
-
       - name: Set up Python version
         uses: actions/setup-python@v3.0.0
         with:
@@ -65,6 +63,7 @@ jobs:
     permissions:
       contents: none
     runs-on: ubuntu-latest
+    environment: Production
 
     steps:
       - name: Download artifact from build job

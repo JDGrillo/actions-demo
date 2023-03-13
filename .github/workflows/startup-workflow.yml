@@ -5,10 +5,10 @@ on:
     branches: [ "startup-branch" ]
 
 env:
-  APP_NAME: "workshopappjdtest2" # update this for your app name
-  RESOURCE_GROUP: "workshop"     # update this or set this to the same RG as the app
-  LOCATION: "eastus"
-  PYTHON_VERSION: '3.7'
+  APP_NAME: "workshopappjdtest" # update this for your app name
+  RESOURCE_GROUP: "workshop"    # update this or set this to the same RG as the app
+  LOCATION: "eastus"            # set to the same region as RG
+  PYTHON_VERSION: '3.7'         # set this to the Python version to use
 
 permissions:
   contents: read
@@ -36,7 +36,7 @@ jobs:
 
   validateEnvs:
     runs-on: ubuntu-latest
-    environment: Development
+    environment: Production
 
     steps:
       - name: Update PUBLISH_PROFILEs
