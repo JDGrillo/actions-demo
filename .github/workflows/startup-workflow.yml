@@ -36,7 +36,7 @@ jobs:
           parameters: webAppName=${{ env.APP_NAME }} location="${{ env.LOCATION }}"
 
   buildApplication:
-    needs: validateEnvs
+    needs: createResources
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
