@@ -1,15 +1,15 @@
 name: Build and deploy Python app to Azure Web App Staging Slot
 
 on:
-  workflow_run:
-    workflows: [Create App Service with Staging Deployment Slot]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: [Create App Service with Staging Deployment Slot]
+  #   types:
+  #     - completed
   workflow_dispatch:
 
 env:
-  APP_NAME: "jdsaccelerator" # update this for your app name
-  RESOURCE_GROUP: "demo"    # update this or set this to the same RG as the app
+  APP_NAME: $WEBAPP_NAME # update this for your app name
+  RESOURCE_GROUP: $RESOURCE_GROUP    # update this or set this to the same RG as the app
   LOCATION: "eastus"            # set to the same region as RG
   PYTHON_VERSION: '3.7'         # set this to the Python version to use
 
