@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 env:
-  APP_NAME: "workshopappjdtest" # update this for your app name
-  RESOURCE_GROUP: "workshop"    # update this or set this to the same RG as the app
+  APP_NAME: "jdsaccelerator" # update this for your app name
+  RESOURCE_GROUP: "demo"    # update this or set this to the same RG as the app
   LOCATION: "eastus"            # set to the same region as RG
   PYTHON_VERSION: '3.7'         # set this to the Python version to use
 
