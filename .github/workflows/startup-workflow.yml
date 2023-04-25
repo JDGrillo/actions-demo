@@ -3,12 +3,13 @@ name: Create App Service with Staging Deployment Slot
 on:
   push:
     branches: [ "startup-branch" ]
+  workflow_dispatch:
 
 env:
-  APP_NAME: ${{ vars.WEBAPP_NAME }} # update this for your app name
-  RESOURCE_GROUP: ${{ vars.RESOURCE_GROUP}}    # update this or set this to the same RG as the app
-  LOCATION: "eastus"            # set to the same region as RG
-  PYTHON_VERSION: '3.7'         # set this to the Python version to use
+  APP_NAME: ${{ vars.WEBAPP_NAME }}
+  RESOURCE_GROUP: ${{ vars.RESOURCE_GROUP}}
+  LOCATION: "eastus"     # set to the same region as RG
+  PYTHON_VERSION: '3.9'  # set this to the Python version to use
 
 permissions:
   contents: read
@@ -33,15 +34,6 @@ jobs:
           resourceGroupName: ${{ env.RESOURCE_GROUP }}
           template: ./arm_templates/app_service_arm.json
           parameters: webAppName=${{ env.APP_NAME }} location="${{ env.LOCATION }}"
-
-  validateEnvs:
-    runs-on: ubuntu-latest
-    environment: Production
-    needs: createResources
-
-    steps:
-      - name: Update PUBLISH_PROFILEs
-        run: echo "Ensure GH Secrets are set"
 
   buildApplication:
     needs: validateEnvs

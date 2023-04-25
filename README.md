@@ -1,7 +1,13 @@
-# Deploy a Python (Flask) web app to Azure App Service - Sample Application
+# DevOps Accelerator
 
-This is the sample Flask application for the Azure Quickstart [Deploy a Python (Django or Flask) web app to Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/quickstart-python).  For instructions on how to create the Azure resources and deploy the application to Azure, refer to the Quickstart article.
+The repository contains several Accelerators developed to introduce and expand on DevOps concepts- using Microsoft tools.
 
-A Django sample application is also available for the article at [https://github.com/Azure-Samples/msdocs-python-django-webapp-quickstart](https://github.com/Azure-Samples/msdocs-python-django-webapp-quickstart).
+Each Accelerator has a corresponding branch to demonstrate a set of examples, so ensure the fork you create maintains all branches.
 
-If you need an Azure account, you can [create on for free](https://azure.microsoft.com/en-us/free/).
+## On startup, navigate to to the startup-branch:
+- Ensure you have an Azure subscription, create a Resource Group and add your credentials as secrets into the GitHub repository. [https://github.com/marketplace/actions/azure-load-testing#azure-service-principal-for-rbac (steps 1-3)]
+- Create a Resource Group in Azure for a webapp.
+- Set RESOURCE_GROUP and WEBAPP_NAME as repository variables.
+- Once you've made the above changes to the startup-branch, push the changes- this will trigger a GitHub Action workflow.
+- This workflow has 2 jobs, with the first creating the resources in Azure. Once the resources are created in Azure, head to the webapp created, and save the "Publish" profile of the production and staging slot as GitHub secrets.
+- Once you have saved this, review the workflow triggered against your changes, and approve the validateEnvs job.
