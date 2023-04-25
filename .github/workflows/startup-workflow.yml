@@ -37,12 +37,14 @@ jobs:
   validateEnvs:
     runs-on: ubuntu-latest
     environment: Production
+    needs: createResources
 
     steps:
       - name: Update PUBLISH_PROFILEs
         run: echo "Ensure GH Secrets are set"
 
   buildApplication:
+    needs: validateEnvs
     runs-on: ubuntu-latest
     steps:
       - name: Set up Python version
@@ -71,6 +73,7 @@ jobs:
     permissions:
       contents: none
     runs-on: ubuntu-latest
+    needs: buildApplication
 
     steps:
       - name: Download artifact from build job
