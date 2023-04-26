@@ -2,7 +2,7 @@ name: Build and deploy Python app to Azure Web App Staging Slot
 
 on:
   push:
-    branches: [ "development" ]
+    branches: [ "feature/ci-cd" ]
   workflow_dispatch:
 
 env:
@@ -27,14 +27,9 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
 
-      - name: Create and start virtual environment
-        run: |
-          python -m venv venv
-          source venv/bin/activate
-
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       # # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
@@ -47,14 +42,6 @@ jobs:
 
       # - name: Run pytest
       #   run: python -m pytest
-
-      - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v3
-        with:
-          name: python-app
-          path: |
-            .
-            !venv/
 
   deploy:
     permissions:
@@ -73,13 +60,9 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }} # set this through a service principal and save as a GitHub secret
           # https://github.com/marketplace/actions/azure-load-testing#azure-service-principal-for-rbac - don't run in Git Bash 
-
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: python-app
-          path: .
-
+      
+      - name: Building web app
+        uses: azure/appservice-build@v2
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2

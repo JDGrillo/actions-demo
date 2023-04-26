@@ -15,7 +15,6 @@ app = Flask(__name__)
 
 NEW_FEATURES = os.environ["NEW_FEATURES"]
 
-
 @app.route("/")
 def index():
     if NEW_FEATURES == "on":
