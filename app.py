@@ -40,11 +40,9 @@ def hello():
         joke = create_joke(name, title)
         if name:
             return render_template("hello_joke_feature.html", joke=joke)
-        print(
-            "Request for hello page received with no name or blank name -- redirecting"
-        )
+        print("Request for hello page received with no name or blank name -- redirecting")
         return redirect(url_for("index"))
-    if name:
+    if (name):
         return render_template("hello.html", name=name)
     print("Request for hello page received with no name or blank name -- redirecting")
     return redirect(url_for("index"))
