@@ -8,7 +8,9 @@ from flask import (
     send_from_directory,
 )
 from helpers.create_joke import create_joke
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 
 NEW_FEATURES = os.environ["NEW_FEATURES"]
