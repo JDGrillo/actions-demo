@@ -1,4 +1,4 @@
-from datetime import datetime
+import os
 from flask import (
     Flask,
     render_template,
@@ -7,21 +7,27 @@ from flask import (
     url_for,
     send_from_directory,
 )
+from helpers.create_joke import create_joke
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
+
+NEW_FEATURES = os.environ["NEW_FEATURES"]
 
 
 @app.route("/")
 def index():
-    print("Request for index page received")
+    if NEW_FEATURES == "on":
+        return render_template("index_joke_feature.html")
     return render_template("index.html")
 
 
-@app.route("/favicon.ico")
+@app.route("/images/clippy.png")
 def favicon():
     return send_from_directory(
         os.path.join(app.root_path, "static"),
-        "favicon.ico",
+        "images/clippy.png",
         mimetype="image/vnd.microsoft.icon",
     )
 
@@ -29,14 +35,17 @@ def favicon():
 @app.route("/hello", methods=["POST"])
 def hello():
     name = request.form.get("name")
-    if name:
-        print("Request for hello page received with name=%s" % name)
-        return render_template("hello.html", name=name)
-    else:
-        print(
-            "Request for hello page received with no name or blank name -- redirecting"
-        )
+    if NEW_FEATURES == "on":
+        title = request.form.get("title")
+        joke = create_joke(name, title)
+        if name:
+            return render_template("hello_joke_feature.html", joke=joke)
+        print("Request for hello page received with no name or blank name -- redirecting")
         return redirect(url_for("index"))
+    if (name):
+        return render_template("hello.html", name=name)
+    print("Request for hello page received with no name or blank name -- redirecting")
+    return redirect(url_for("index"))
 
 
 if __name__ == "__main__":
