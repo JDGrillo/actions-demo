@@ -65,6 +65,13 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        continue-on-error: false
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }} # set this through a service principal and save as a GitHub secret
+          # https://github.com/marketplace/actions/azure-load-testing#azure-service-principal-for-rbac - don't run in Git Bash 
+
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
