@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
 
 env:
-  APP_NAME: "workshopappjdtest1" # update this for your app name
-  RESOURCE_GROUP: "workshop" # update this or set this to the same RG as the app
+  APP_NAME: ${{ vars.WEBAPP_NAME }} # update this for your app name
+  RESOURCE_GROUP: ${{ vars.RESOURCE_GROUP }} # update this or set this to the same RG as the app
   LOCATION: "eastus"
-  PYTHON_VERSION: '3.7'              # set this to the Python version to use
+  PYTHON_VERSION: '3.9'              # set this to the Python version to use
 
 permissions:
   contents: read
@@ -96,6 +96,5 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.APP_NAME }}  
-          publish-profile: ${{ secrets.AZURE_WEB_APP_PUBLISH_PROFILE_STAGING }}
+          app-name: ${{ env.APP_NAME }}
           slot-name: 'staging'

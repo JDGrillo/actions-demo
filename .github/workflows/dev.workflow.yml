@@ -1,7 +1,7 @@
 name: Continuous Integration of Branch
 
 env:
-  PYTHON_VERSION: '3.7' # set this to the Python version to use
+  PYTHON_VERSION: '3.9' # set this to the Python version to use
 
 on:
   push:
