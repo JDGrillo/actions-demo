@@ -33,7 +33,7 @@
     },
     "linuxFxVersion": {
       "type": "string",
-      "defaultValue": "PYTHON|3.7",
+      "defaultValue": "PYTHON|3.9",
       "metadata": {
         "description": "The Runtime stack of current web app"
       }
@@ -79,6 +79,10 @@
             {
               "name": "NEW_FEATURES",
               "value": "off"
+            },
+            {
+              "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
+              "value": "1"
             }
           ]
         }
@@ -121,6 +125,10 @@
             {
               "name": "NEW_FEATURES",
               "value": "on"
+            },
+            {
+              "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
+              "value": "1"
             }
           ]
     }
