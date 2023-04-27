@@ -5,7 +5,7 @@ The repository contains several Accelerators developed to introduce and expand o
 Each Accelerator has a corresponding branch to demonstrate a set of examples, so ensure the fork you create maintains all branches.
 
 ## On startup, navigate to to the startup-branch:
-- If using VS Code, suggested Extensions include: Black Formatter, GitHub Copilot, GitLens, Python.
+- If using VS Code, suggested Extensions include: Black Formatter (configure to format on save), GitHub Copilot, GitLens, Python.
 - Ensure you have an Azure subscription, create a Resource Group, Service Principal, and add your sp credentials as secrets into the GitHub repository. [https://github.com/marketplace/actions/azure-load-testing#azure-service-principal-for-rbac (steps 1-3)]
 - Create two environments in GitHub named Development and Production which require manual approval.
 - Set RESOURCE_GROUP and WEBAPP_NAME (your choice, use a unique name) as repository variables.
