@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 NEW_FEATURES = os.environ["NEW_FEATURES"]
 
-@app.route("/")
+@app.route('/')
 def index():
     if NEW_FEATURES == "on":
         return render_template("index_joke_feature.html")
@@ -30,8 +30,7 @@ def favicon():
         mimetype="image/vnd.microsoft.icon",
     )
 
-
-@app.route("/hello", methods=["POST"])
+@app.route('/hello', methods=['POST'])
 def hello():
     name = request.form.get("name")
     if NEW_FEATURES == "on":
@@ -47,5 +46,5 @@ def hello():
     return redirect(url_for("index"))
 
 
-if __name__ == "__main__":
-    app.run()
+if __name__ == '__main__':
+   app.run()
