@@ -1,0 +1,48 @@
+name: Continuous Integration of Branch
+
+env:
+  PYTHON_VERSION: '3.9' # set this to the Python version to use
+
+on:
+  push:
+    branches: [ "feature/*" ]
+  pull_request:
+    branches: [ "main", "development" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python version
+        uses: actions/setup-python@v3.0.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+
+      - name: Install dependencies
+        run: | 
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      - name: Super-Linter
+        uses: github/super-linter@v4.10.1
+        env:
+          VALIDATE_PYTHON_BLACK: true
+          VALIDATE_PYTHON_PYLINT: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run pytest
+        run: python -m pytest
