@@ -14,11 +14,10 @@ permissions:
   contents: read
 
 jobs:
-  python_matrix:
+  build:
     strategy:
       matrix:
         version: [ '3.7', '3.9', '3.10' ]
-  build:
     runs-on: ubuntu-latest
 
     steps:
