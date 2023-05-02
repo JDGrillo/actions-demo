@@ -15,8 +15,6 @@ app = Flask(__name__)
 
 NEW_FEATURES = os.environ["NEW_FEATURES"]
 
-STORAGE_ACCOUNT_KEY = "vSaZXfpzeN+R4Oqp9+vhBmgbZXgeBhdSjLQPCOsR+5KDmOWtiFblLK4OOyfM/dmNoGcOJm0so+M+AStsSMk9w=="
-
 @app.route("/")
 def index():
     if NEW_FEATURES == "on":
