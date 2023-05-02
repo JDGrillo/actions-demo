@@ -5,9 +5,9 @@ The Greeter Application will ask for your name and job title, and return a custo
 # Developer Details
 
 ## Start the application locally
-python -m venv env
-source env/Scripts/activate
-pip install -r requirements.txt
+python -m venv env \
+source env/Scripts/activate \
+pip install -r requirements.txt \
 python app.py
 
 This application uses feature flags to more granularly control deployments. Be sure to include an .env file- check example.env for reference.
