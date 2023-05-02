@@ -1,8 +1,8 @@
 name: Create App Service with Staging Deployment Slot
 
 on:
-  # push:
-  #   branches: [ "startup-branch" ]
+  push:
+    branches: [ "startup-branch" ]
   workflow_dispatch:
 
 env:
