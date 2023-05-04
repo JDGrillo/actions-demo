@@ -4,4 +4,8 @@ joke_dict = {
     "CEO": "Chief Happiness Officer",
     "Accountant": "Calculator",
     "Lawyer": "Legal Eagle",
+    "Doctor": "Dr. Feelgood",
+    "Dentist": "Dr. Drill",
+    "Teacher": "Professor",
+    "Chef": "Foodie",
 }
